@@ -11,8 +11,11 @@ public class GameManager : MonoBehaviour
 	public float curSpawnDelay;
 
 	public GameObject player;
+	[SerializeField] private Texture2D[] playerImage;
 
 	public GameObject item1;
+
+	public int level = 1;
 
 	void Update()
 	{
@@ -53,6 +56,12 @@ public class GameManager : MonoBehaviour
 
 	public void RespawnPlayerExe()
 	{
+		if (++level > 4) return;
+
+		var texture = playerImage[level - 1]; 
+		Rect rect = new Rect(0, 0, texture.width, texture.height);
+		player.GetComponent<SpriteRenderer>().sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
+		
 		player.transform.position = Vector3.down * 3.5f;
 		player.SetActive(true);
 	}

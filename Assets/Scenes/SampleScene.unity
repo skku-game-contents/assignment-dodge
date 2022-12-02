@@ -1262,7 +1262,7 @@ MonoBehaviour:
   speed: 10
   maxShotDelay: 0.15
   curShotDelay: 0
-  bulletobj: {fileID: 167847266664247191, guid: e2c842f354245dc47b6b0a5275873218, type: 3}
+  bulletobj: {fileID: 167847266664247191, guid: 05d91b97cbcd140b78543e6bcd0473f4, type: 3}
   manager: {fileID: 2126943552}
   delete: {fileID: 0}
 --- !u!212 &1426411511
@@ -1945,7 +1945,13 @@ MonoBehaviour:
   maxSpawnDelay: 2
   curSpawnDelay: 0
   player: {fileID: 1426411509}
+  playerImage:
+  - {fileID: 2800000, guid: e8ce41296a8294b3988fd9522d946488, type: 3}
+  - {fileID: 2800000, guid: 96126ee7f93f34006832e193c69a2064, type: 3}
+  - {fileID: 2800000, guid: c75b29316dfb04b35b19dfd57b699267, type: 3}
+  - {fileID: 2800000, guid: 566bdc516ccfe497186931da35d2142a, type: 3}
   item1: {fileID: 0}
+  level: 1
 --- !u!4 &2126943553
 Transform:
   m_ObjectHideFlags: 0

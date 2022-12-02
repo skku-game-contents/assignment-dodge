@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +22,12 @@ public class Player : MonoBehaviour
 
     public DeleteObject delete;
 
+    [SerializeField] private Image canvasImage;
+
+    private bool isTouchingTop = false;
+    private bool isTouching = false;
+    private bool isPressing = false;
+
     private void OnEnable()
     {
         // LevelController.main.CurrentLevel = 2; // 이 숫자를 바꾸면서 바뀌는 플레이어 스피드를 확인해보세요.
@@ -31,6 +39,7 @@ public class Player : MonoBehaviour
         Move();
         Fire();
         Reload();
+        SetBackgroundImage();
     }
 
     void Move()
@@ -75,9 +84,11 @@ public class Player : MonoBehaviour
             switch(collision.gameObject.name){
                 case "Top":
                     isTouchTop = true;
+                    isTouching = true;
                     break;
                 case "Bottom":
                     isTouchBottom = true;
+                    isTouching = true;
                     break;
                 case "Right":
                     isTouchRight = true;
@@ -106,7 +117,8 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Border"){
+        if(collision.gameObject.tag == "Border"){ 
+            isTouching = false;
             switch(collision.gameObject.name){
                 case "Top":
                     isTouchTop = false;
@@ -121,6 +133,22 @@ public class Player : MonoBehaviour
                     isTouchLeft = false;
                     break;
             }
+        }
+    }
+
+    private void SetBackgroundImage()
+    {
+        if (!isTouching || (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))) return;
+
+        if (isTouchTop)
+        {
+            canvasImage.rectTransform.SetTop(-canvasImage.rectTransform.offsetMax.y + 1);
+            canvasImage.rectTransform.SetBottom(canvasImage.rectTransform.offsetMin.y - 1);
+        }
+        if (isTouchBottom)
+        {
+            canvasImage.rectTransform.SetTop(-canvasImage.rectTransform.offsetMax.y - 1);
+            canvasImage.rectTransform.SetBottom(canvasImage.rectTransform.offsetMin.y + 1);
         }
     }
 }

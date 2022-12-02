@@ -1265,6 +1265,7 @@ MonoBehaviour:
   bulletobj: {fileID: 167847266664247191, guid: 05d91b97cbcd140b78543e6bcd0473f4, type: 3}
   manager: {fileID: 2126943552}
   delete: {fileID: 0}
+  canvasImage: {fileID: 967816641}
 --- !u!212 &1426411511
 SpriteRenderer:
   m_ObjectHideFlags: 0

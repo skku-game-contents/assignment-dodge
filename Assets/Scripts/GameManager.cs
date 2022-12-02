@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject item1;
 
-	public int level = 1;
+	public static event Action LevelChanged; 
 
 	void Update()
 	{
@@ -58,9 +60,15 @@ public class GameManager : MonoBehaviour
 
 	public void RespawnPlayerExe()
 	{
-		if (++level > 4) gameOverUI.SetActive(true);
+		if (++LevelController.main.CurrentLevel > 4)
+		{
+			gameOverUI.SetActive(true);
+			return;
+		};
+		
+		LevelChanged?.Invoke();
 
-		var texture = playerImage[level - 1]; 
+		var texture = playerImage[LevelController.main.CurrentLevel - 1]; 
 		Rect rect = new Rect(0, 0, texture.width, texture.height);
 		player.GetComponent<SpriteRenderer>().sprite = Sprite.Create(texture, rect, new Vector2(0.5f, 0.5f));
 		

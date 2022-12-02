@@ -31,11 +31,11 @@ public class LevelController : MonoBehaviour
             case 1:
                 return 10;
             case 2:
-                return 12.5f;
+                return 7;
             case 3:
-                return 15;
+                return 5;
             case 4:
-                return 20;
+                return 3;
             default:
                 return 0;
         }

@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        // LevelController.main.CurrentLevel = 2; // 이 숫자를 바꾸면서 바뀌는 플레이어 스피드를 확인해보세요.
-        // speed = LevelController.main.GetPlayerSpeed(); // 현재 레벨에 맞는 플레이어 스피드 설정
+        GameManager.LevelChanged += OnLevelChanged;
+        
     }
 
     void Update()
@@ -150,5 +150,10 @@ public class Player : MonoBehaviour
             canvasImage.rectTransform.SetTop(-canvasImage.rectTransform.offsetMax.y - 1);
             canvasImage.rectTransform.SetBottom(canvasImage.rectTransform.offsetMin.y + 1);
         }
+    }
+
+    private void OnLevelChanged()
+    {
+        speed = LevelController.main.GetPlayerSpeed();
     }
 }

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 	public GameObject player;
 	[SerializeField] private Texture2D[] playerImage;
 
+	[SerializeField] private GameObject gameOverUI;
+
 	public GameObject item1;
 
 	public int level = 1;
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
 
 	public void RespawnPlayerExe()
 	{
-		if (++level > 4) return;
+		if (++level > 4) gameOverUI.SetActive(true);
 
 		var texture = playerImage[level - 1]; 
 		Rect rect = new Rect(0, 0, texture.width, texture.height);
